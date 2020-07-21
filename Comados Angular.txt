@@ -1,0 +1,6 @@
+DEPENDENCIAS DE ANGULAR
+
+ng new = Crea un nuevo proyecto
+ng serve = Inicia un proyecto angular
+
+ng g component nombre_componente = Crea un nuevo componente
