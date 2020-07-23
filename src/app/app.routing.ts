@@ -8,6 +8,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { ErrorComponent } from './components/error/error.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
+import { CategoryNewComponent } from './components/category-new/category-new.component';
 
 //DEFINIR CONFIGURACIÓN
 const appRoutes: Routes = [
@@ -17,6 +18,7 @@ const appRoutes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'ajustes', component: UserEditComponent},
+    {path: 'crear-categoria', component: CategoryNewComponent},
     {path: '**', component: ErrorComponent}
 ];
 

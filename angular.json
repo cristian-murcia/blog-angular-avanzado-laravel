@@ -32,8 +32,7 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "node_modules/froala-editor/js/froala_editor.pkgd.min.js",
-              "node_modules/postcss-loader/src/index.js"
+              "node_modules/froala-editor/js/froala_editor.pkgd.min.js"
             ]
           },
           "configurations": {
