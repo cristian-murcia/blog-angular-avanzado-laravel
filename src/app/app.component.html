@@ -16,8 +16,8 @@
         <li class="nav-item active">
           <a class="nav-link" [routerLink]="['/inicio']">Inicio<span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/inicio']">Categoria</a>
+        <li class="nav-item" *ngFor="let category of categories">
+          <a class="nav-link" href="#">{{category.name}}</a>
         </li>
       </ul>
 
@@ -43,7 +43,7 @@
             {{ identity.name + ' ' + identity.surname}}
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Crear entrada</a>
+            <a class="dropdown-item" [routerLink]="['/crear-entrada']">Crear entrada</a>
             <a class="dropdown-item" [routerLink]="['/crear-categoria']">Crear categoria</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Mi perfil</a>
@@ -61,7 +61,7 @@
 
   <footer>
     <hr>
-      Master en Angular Cristian Guzmán &copy;
+    Master en Angular Cristian Guzmán &copy;
     <hr>
   </footer>
 

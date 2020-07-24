@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Category } from '../models/category';
-import { global } from '../services/global';
+import { Post } from '../models/post';
+import { global } from './global';
 
 @Injectable()
-export class CategoryService {
+export class PostService {
 
     public url: string;
     public identity: string;
@@ -17,22 +17,22 @@ export class CategoryService {
         this.url = global.url;
     }
 
-    //Crear categoria Peticion
-    create(token, category): Observable<any> {
-        let json = JSON.stringify(category);
+    //Crear nuevo Post
+    create(token, post): Observable<any>{
+        let json = JSON.stringify(post);
         let params = 'json=' + json;
 
         let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
             .set('Authorization', token);
 
-        return this._http.post(this.url + '/category', params, { headers: headers });
+        return this._http.post(this.url + '/post', params, { headers: headers });
     }
 
-    //Traer todas las categorias
-    getCategories(): Observable<any>{
+    //Conseguir Posts
+    getPosts(): Observable<any>{
         let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-
-        return this._http.get(this.url + '/category', { headers: headers });
+  
+        return this._http.get(this.url + '/post', { headers: headers });
     }
 
 
