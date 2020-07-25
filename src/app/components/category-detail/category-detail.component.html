@@ -1,8 +1,16 @@
-<div class="loading" *ngIf="!posts">
+<div class="loading" *ngIf="!category">
     Cargando...
 </div>
 
-<div class="container-fluid mt-3" *ngIf="posts">
+<div class="container-fluid mt-3" *ngIf="category">
+    <h1>{{category.name}}</h1>
+</div>
+
+<div class="alert alert-warning" *ngIf="posts && posts.length == 0">
+    No hay posts de esta categoria
+</div>
+
+<div class="container-fluid mt-3" *ngIf="posts && posts.length >= 1">
     <h1>{{page_title}}</h1>
     <div class="card-columns mt-4">
         <article class="card w-100" *ngFor="let post of posts">
@@ -26,7 +34,8 @@
                         <a [routerLink]="['/editar-entrada/', post.id]" class="btn btn-info mr-2">Editar</a>
 
                         <!-- Button to Open the Modal -->
-                        <button type="button" class="btn btn-danger" data-toggle="modal" [attr.data-target]="'#myModal'+post.id">
+                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                            [attr.data-target]="'#myModal'+post.id">
                             Borrar
                         </button>
 
@@ -49,7 +58,8 @@
                                     <!-- Modal footer -->
                                     <div class="modal-footer">
 
-                                        <a (click)="deletePost(post.id)" class="btn btn-danger mr-2" data-dismiss="modal">Borrar</a>
+                                        <a (click)="deletePost(post.id)" class="btn btn-danger mr-2"
+                                            data-dismiss="modal">Borrar</a>
                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                     </div>
 

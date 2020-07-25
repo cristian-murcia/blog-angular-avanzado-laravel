@@ -1,7 +1,8 @@
 <div class="col-md-12 mt-4">
 
     <h1>{{page_title}}</h1>
-    <p *ngIf="status != 'success'">Crea una nueva entrada como post.</p>
+    <p *ngIf="is_edit == null">Crea una nueva entrada como post.</p>
+    <p *ngIf="is_edit && post">Modifica la entrada {{post.title}}</p>
     <hr>
     <div class="alert alert-success col-md-6" *ngIf="status == 'success'">
         El post ha sido guardado :) !!
@@ -22,7 +23,7 @@
 
         <div class="form-group">
             <label for="content">Contenido</label>
-            <textarea type="text" name="title" #content="ngModel" [(ngModel)]="post.content" class="form-control"
+            <textarea type="text" name="content" #content="ngModel" [(ngModel)]="post.content" class="form-control"
                 required>
             </textarea>
             <small *ngIf="!content.valid && content.touched" class="invalid-feedback d-block">

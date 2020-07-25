@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../services/post.service';
+import { UserService } from '../../services/user.service';
 import { Post } from '../../models/post';
 import { global } from '../../services/global';
 
@@ -13,13 +14,18 @@ export class HomeComponent implements OnInit {
 
   public page_title: string;
   public url;
-  public post: Array<Post>;
+  public posts: Array<Post>;
+  public identity;
+  public token;
 
   constructor(
-    private _postService: PostService
+    private _postService: PostService,
+    private _userService: UserService
   ) { 
-    this.page_title = 'Pagina de inicio';
+    this.page_title = 'Post recientes';
     this.url = global.url;
+    this.identity = this._userService.getIdentity();
+    this.token = this._userService.getToken();
   }
 
   ngOnInit(): void {
@@ -30,12 +36,23 @@ export class HomeComponent implements OnInit {
     this._postService.getPosts().subscribe(
       response => {
         if (response.status == 'success') {
-          this.post = response.posts;
-          console.log(this.post);
+          this.posts = response.categories;
+          console.log(this.posts);
         }
       },
       error => {
         console.log(<any>error);
+      }
+    );
+  }
+
+  deletePost(id){
+    this._postService.delete(this.token, id).subscribe(
+      response => {
+        this.getPosts();
+      },
+      error => {
+        console.log(error);
       }
     );
   }

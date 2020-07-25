@@ -7,12 +7,11 @@ import { Post } from '../../models/post';
 import { global } from '../../services/global';
 
 @Component({
-  selector: 'post-new',
-  templateUrl: './post-new.component.html',
-  styleUrls: ['./post-new.component.css'],
+  selector: 'post-edit',
+  templateUrl: '../post-new/post-new.component.html',
   providers: [UserService, CategoryService, PostService]
 })
-export class PostNewComponent implements OnInit {
+export class PostEditComponent implements OnInit {
 
   public page_title: string;
   public status;
@@ -48,26 +47,29 @@ export class PostNewComponent implements OnInit {
     private _postService: PostService
 
   ) {
-    this.page_title = 'Crear entrada';
+    this.page_title = 'Editar entrada';
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
+    this.is_edit = true;
   }
 
   ngOnInit(): void {
     this.getCategories();
     this.post = new Post(1, this.identity.id, 1, '', '', null, null);
-    //console.log(this.post);
+    this.getPost();
   }
 
   //Metodo para crear una entrada
   onSubmit(form) {
-    this._postService.create(this.token, this.post).subscribe(
+    this._postService.update(this.token, this.post, this.post.id).subscribe(
       response => {
         if (response.status == 'success') {
-          this.post = response.post;
+          //this.post = response.post;
           this.status = 'success';
-          this._router.navigate(['inicio']);
-          form.reset();
+          this._router.navigate(['/entrada', this.post.id]);
+          //form.reset();
+        } else {
+          this.status = 'error';
         }
       },
       error => {
@@ -89,6 +91,28 @@ export class PostNewComponent implements OnInit {
         console.log(<any>error);
       }
     );
+  }
+
+  getPost() {
+    //Obtener el id de post
+    this._route.params.subscribe(params => {
+      let id = +params['id'];
+      console.log('id' + id);
+      //Peticion para traer datos de dicho post
+      this._postService.getPost(id).subscribe(
+        response => {
+          if (response.status == 'success') {
+            this.post = response.post;
+            console.log(this.post);
+          } else {
+            this._router.navigate(['inicio']);
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    });
   }
 
   //Metodo de subida de imagen

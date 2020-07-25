@@ -14,3 +14,20 @@
 .avatar_mask img{
 width: 40px;
 }
+
+.card-header a {
+    color: #444;
+}
+
+.img-post {
+    /* max-width: 280px;
+    max-height: 280px;
+    min-width: 280px;
+    min-height: 280px; */
+    height: 300px;
+    overflow: hidden;
+}
+
+footer{
+    color: lightgray;
+}
