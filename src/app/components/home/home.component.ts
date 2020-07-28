@@ -8,7 +8,7 @@ import { global } from '../../services/global';
   selector: 'home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [PostService]
+  providers: [PostService, UserService]
 })
 export class HomeComponent implements OnInit {
 

@@ -13,6 +13,7 @@ import { PostNewComponent } from './components/post-new/post-new.component';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { PostEditComponent } from './components/post-edit/post-edit.component';
 import { CategoryDetailComponent } from './components/category-detail/category-detail.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 //IMPORTAR GUARD
 import { IdentityGuard } from './services/identity.guard';
@@ -31,6 +32,7 @@ const appRoutes: Routes = [
     {path: 'entrada/:id', component: PostDetailComponent},
     {path: 'editar-entrada/:id', component: PostEditComponent, canActivate: [IdentityGuard]},
     {path: 'categoria/:id', component: CategoryDetailComponent},
+    {path: 'perfil/:id', component: ProfileComponent},
     {path: '**', component: ErrorComponent}
 ];
 
